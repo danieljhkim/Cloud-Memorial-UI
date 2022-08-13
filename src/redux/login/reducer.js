@@ -2,12 +2,15 @@ import * as ActionTypes from './actionTypes';
 
 const initialState = {
   isLoading: false,
-  isLoggedIn: false,
-  error: null,
+  authenticated: false,
+  error: false,
+  errorCause: null,
   user: null,
+  role: null,
+  loginSession: {}
 };
 
-export default function reducer(state = initialState, action) {
+export function loginReducer(state = initialState, action) {
   switch (action.type) {
     case ActionTypes.LOGIN_REQUEST_START:
       return {
@@ -18,22 +21,31 @@ export default function reducer(state = initialState, action) {
     case ActionTypes.LOGIN_REQUEST_SUCCESS:
       return {
         ...state,
+        error: false,
+        errorCause: null,
+        loginSession: action.payload?.session,
         isLoading: false,
-        isLoggedIn: true,
-        user: action.payload,
+        authenticated: true,
+        username: action.payload?.username,
+        role: action.payload?.role,
       };
     case ActionTypes.LOGIN_REQUEST_ERROR:
       return {
         ...state,
         isLoading: false,
-        error: action.payload,
+        authenticated: false,
+        error: true,
+        errorCause: action.payload?.error,
       };
     case ActionTypes.LOGIN_REQUEST_CLEAR:
       return {
         ...state,
         isLoading: false,
-        isLoggedIn: false,
-        user: null,
+        authenticated: false,
+        username: null,
+        role: null,
+        error: false,
+        errorCause: null,
       };
     default:
       return state;

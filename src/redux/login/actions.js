@@ -8,9 +8,15 @@ export const setLoginState = (type, payload) => {
 export const loginRequest = (username, password) => {
   return dispatch => {
     dispatch(setLoginState(ActionTypes.LOGIN_REQUEST_START));
+    if(username === 'admin' && password === 'admin') { //FIXME: remove after development
+      dispatch(setLoginState(ActionTypes.LOGIN_REQUEST_SUCCESS, {username: username, role: 'admin'}));
+      return;
+    } else {
+      dispatch(setLoginState(ActionTypes.LOGIN_REQUEST_ERROR, {error: 'Invalid username or password'}));
+    }
     Axios.post('/api/login', {username, password})
       .then(res => {
-        dispatch(setLoginState(ActionTypes.LOGIN_REQUEST_SUCCESS, res.data));
+        dispatch(setLoginState(ActionTypes.LOGIN_REQUEST_SUCCESS, res.data)); //FIXME: extract resp data
       }).catch(err => {
         dispatch(setLoginState(ActionTypes.LOGIN_REQUEST_ERROR, err));
       });
