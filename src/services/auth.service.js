@@ -2,7 +2,7 @@ import RestService from "./wrapper/restService";
 
 const API_URL = process.env.API_URL || "http://localhost:4000/api/auth/";
 
-exports.auth = () => {
+const AuthService = () => {
 
   const _register = (username, email, password) => {
     return RestService.post(API_URL + "signup", {
@@ -36,3 +36,5 @@ exports.auth = () => {
     logout: _logout,
   }
 }
+
+export default AuthService;

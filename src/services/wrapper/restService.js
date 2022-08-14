@@ -1,7 +1,7 @@
 import axios from 'axios';
 import authHeader from '../util/auth-header';
 
-exports.RestService = (defaultConfig={}) => {
+const RestService = (defaultConfig={}) => {
 
   const _buildConfig = (url, config, method="GET") =>  {
     const newConfig = Object.assign({}, defaultConfig);
@@ -44,3 +44,5 @@ exports.RestService = (defaultConfig={}) => {
     patch: _patch,
   }
 }
+
+export default RestService;

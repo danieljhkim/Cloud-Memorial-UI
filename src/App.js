@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function App(props) {
   return (
     <div className="App">
-      <LoginPage {...props}></LoginPage>s
+      <LoginPage {...props}></LoginPage>
     </div>
   );
 }

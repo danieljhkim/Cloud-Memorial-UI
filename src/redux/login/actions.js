@@ -1,5 +1,5 @@
-import Axios from 'axios';
 import * as ActionTypes from './actionTypes';
+import AuthService from '../../services/auth.service';
 
 export const setLoginState = (type, payload) => {
   return {type, payload};
@@ -27,7 +27,7 @@ export const loginRequest = (username, password) => {
     } else {
       dispatch(setLoginState(ActionTypes.LOGIN_REQUEST_ERROR, {error: 'Invalid username or password'}));
     }
-    Axios.post('/api/login', {username, password})
+    AuthService.login('/api/login', {username, password})
       .then(res => {
         dispatch(setLoginState(ActionTypes.LOGIN_REQUEST_SUCCESS, res.data)); //FIXME: extract resp data
       }).catch(err => {
