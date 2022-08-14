@@ -12,7 +12,5 @@ const getUserDetails = () => {
 
 export default {
   getPublicContent,
-  getUserBoard,
-  getModeratorBoard,
-  getAdminBoard,
+  getUserDetails
 };r

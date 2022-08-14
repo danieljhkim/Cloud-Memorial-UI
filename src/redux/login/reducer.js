@@ -5,10 +5,20 @@ const initialState = {
   authenticated: false,
   error: false,
   errorCause: null,
-  user: null,
-  role: null,
-  loginSession: {}
+  auth: null
 };
+
+/*
+  auth  {
+    isLoggedIn: true,
+    user: {
+      username: 'admin',
+      email: 'email',
+      roles: ['admin'],
+      accessToken: 'accessToken',
+    }
+  }
+*/
 
 export function loginReducer(state = initialState, action) {
   switch (action.type) {
@@ -23,11 +33,9 @@ export function loginReducer(state = initialState, action) {
         ...state,
         error: false,
         errorCause: null,
-        loginSession: action.payload?.session,
         isLoading: false,
         authenticated: true,
-        username: action.payload?.username,
-        role: action.payload?.role,
+        auth: action.payload?.auth,
       };
     case ActionTypes.LOGIN_REQUEST_ERROR:
       return {
@@ -42,7 +50,7 @@ export function loginReducer(state = initialState, action) {
         ...state,
         isLoading: false,
         authenticated: false,
-        username: null,
+        auth: null,
         role: null,
         error: false,
         errorCause: null,

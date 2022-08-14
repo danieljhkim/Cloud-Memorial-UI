@@ -1,14 +1,24 @@
 import React from 'react';
 import LoginPage from './containers/login';
+//import HomePage from './containers/home';
+import LandingPage from './containers/landing';
+import RegisterPage from './containers/register';
 import { connect } from 'react-redux';
-import './App.css';
+import { Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import './App.css';
 
 function App(props) {
   return (
-    <div className="App">
-      <LoginPage {...props}></LoginPage>
-    </div>
+      <div>
+        <Routes>
+          <Route exact path="/" element={<LandingPage></LandingPage>} />
+          <Route path="/login" element={<LoginPage {...props}></LoginPage>} />
+          <Route path="/register" element={ <RegisterPage></RegisterPage> } />
+          {/* <Route path="/forget-password" component={ ForgetPasswordPage } /> */}
+          {/* <Route path="/home" component={ HomePage } /> */}
+        </Routes>
+      </div>
   );
 }
 
