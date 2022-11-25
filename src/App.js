@@ -10,15 +10,15 @@ import './App.css';
 
 function App(props) {
   return (
-      <div>
-        <Routes>
-          <Route exact path="/" element={<LandingPage></LandingPage>} />
-          <Route path="/login" element={<LoginPage {...props}></LoginPage>} />
-          <Route path="/register" element={ <RegisterPage></RegisterPage> } />
-          {/* <Route path="/forget-password" component={ ForgetPasswordPage } /> */}
-          {/* <Route path="/home" component={ HomePage } /> */}
-        </Routes>
-      </div>
+    <div>
+      <Routes>
+        <Route exact path="/" element={<LandingPage></LandingPage>} />
+        <Route path="/login" element={<LoginPage {...props}></LoginPage>} />
+        <Route path="/register" element={ <RegisterPage></RegisterPage> } />
+        {/* <Route path="/forget-password" component={ ForgetPasswordPage } /> */}
+        {/* <Route path="/home" component={ HomePage } /> */}
+      </Routes>
+    </div>
   );
 }
 

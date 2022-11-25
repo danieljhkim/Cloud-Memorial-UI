@@ -2,20 +2,19 @@ import * as ActionTypes from './actionTypes';
 
 const initialState = {
   isLoading: false,
-  authenticated: false,
+  authenticated: JSON.parse(localStorage.getItem("user"))?.authenticated || false,
   error: false,
   errorCause: null,
-  auth: null
+  auth: JSON.parse(localStorage.getItem("user"))?.auth || {}
 };
 
 /*
   auth  {
     isLoggedIn: true,
-    user: {
-      username: 'admin',
-      email: 'email',
-      roles: ['admin'],
-      accessToken: 'accessToken',
+    username: 'admin',
+    email: 'email',
+    roles: ['admin'],
+    accessToken: 'accessToken',
     }
   }
 */
